@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Paul Shingleton</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.12/vue.js"></script>
+   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+   	<script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+  	<style>
+  		.bg-1 {
+  			background-color: #912622;
+  			color: #ffffff;
+  		}
+  		.navbar{
+  			padding-top: 15px;
+  			padding-bottom: 15px;
+  			font-size: 14px;
+  			letter-spacing: 5px;
+  			background-color: #e8e8e8;
+  			text-align: center;
+  		}
+  		.navbar-nav{
+  			float: none;
+  			clear: left;
+  		}
+  		.navbar-nav li{
+  			display:inline-block;
+			float:none;
+			margin:0 20px;
+  		}
+  		.navbar-brand{
+  			position: left;
+  			text-align: center;
+  		}
+  		.navbar-nav li a:hover{
+  			color: #ff3232 !important;
+  		}
+  		.jumbotron h2{
+  			background-color: #666666;
+  			color: #ffffff;
+  			text-align: center;
+  		}
+  		.jumbotron {
+  			background-color: #666666;
+  			color: #ffffff;
+  			text-align: left;
+  		}
+  		iframe {
+  			height: 100%;
+  			width: 100%;
+  		}
+  		#resume-jumbotron {
+  			height: 1200px;
+  			width: 85%;
+  			margin: 0 auto;
+  		}
+  		
+
+  	</style>
+
+</head>
+<body>
+		<div class="container-fluid bg-1 text-center">
+			<h1>Paul Shingleton</h1>
+			<img src="images/meandwashie.jpg" width=256 height=256 class="img-circle">
+			<h3>Software Engineer</h3>
+		</div>
+		<nav class="navbar navbar-default">	
+				<div class="container-fluid">
+						<div class="navbar-header">	
+								<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavBar">	
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+								</button>
+								<a class="navbar-brand" href="#">{{currentPage}}</a>
+						</div>	
+						<div class="collapse navbar-collapse" id="myNavBar">
+								<ul class="nav navbar-nav">	
+										<li><a href="#" v-on:click="changeTab('Home', 'home-view')">HOME</a></li>
+										<li><a href="#" v-on:click="changeTab('Projects', 'projects-view')">PROJECTS</a></li>
+										<li><a href="#" v-on:click="changeTab('Photos', 'photos-view')">PHOTOS</a></li>
+										<li><a href="#" v-on:click="changeTab('Resume', 'resume-view')">RESUME</a></li>
+										<li><a href="#" v-on:click="changeTab('GitHub', 'github-view')">GITHUB</a></li>
+								</ul>	<!-- Navbar items -->
+						</div>	<!-- Navbar -->
+				</div> <!-- Navbar container -->
+		</nav> <!-- Navbar -->
+
+		<div class="container">
+			<component :is="currentComponent" keep-alive></component>
+		</div>
+
+		<template id="home-template">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-8">
+						<div class="jumbotron">
+							<h2>Welcome to Paul</h2>
+							<p></p>
+							<p>Hi there! This is my website. It is a current project I am doing in order to develop my web-dev skills, since I haven't had any formal education on it yet.</p>
+							<p>On here, you can see photos from my adventures, my GitHub projects, and more! Use the navbar at the top of the page.</p>
+						</div> <!-- Jumbotron -->
+					</div> <!-- Column -->
+					<div class="col-md-4">
+					<div id="linked-in" class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="en_US" data-type="horizontal" data-theme="dark" data-vanity="paulcshingletoniv"><a class="LI-simple-link" href='https://www.linkedin.com/in/paulcshingletoniv?trk=profile-badge'>Paul Shingleton</a></div>
+					</div> <!-- Row 2 - LinkedIn -->
+				</div> <!-- Row 1 - Welcome -->
+			</div> <!-- Container -->
+
+		</template>
+
+		<template id="projects-template">
+			<div class="container-fluid">
+				<h2>Projects</h2>
+			</div>
+		</template>
+
+		<template id="photos-template">
+			<div class="container-fluid">
+				<h2>Photos</h2>
+			</div>
+		</template>
+
+		<template id="resume-template">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-12" id="resume-column">
+						<div class="jumbotron" id="resume-jumbotron">
+							<iframe src="https://docs.google.com/document/d/1dsDLwnVn5pGlIEFVGjQSEcbMrB7_9UVTIv3BPrOV0Pc/pub?embedded=true"></iframe>
+						</div> <!-- Jumbotron -->
+					</div> <!-- Column -->
+				</div> <!-- Row -->
+			</div> <!-- Container -->
+		</template>
+
+		<template id="github-template">
+			<div id="github-div" class="container-fluid">
+			</div>
+		</template>
+
+		
+		
+		<script>
+
+		Vue.component('projects-view',{
+ 			template: '#projects-template'
+ 		})
+
+ 		Vue.component('photos-view',{
+ 			template: '#photos-template'
+ 		})
+
+ 		Vue.component('resume-view',{
+ 			template: '#resume-template'
+ 		})
+
+ 		Vue.component('github-view',{
+ 			template: '#github-template'
+ 		})
+
+ 		Vue.component('home-view',{
+ 			template: '#home-template'
+ 		})
+ 		new Vue({
+ 			el: 'body',
+ 			data: {
+ 				currentComponent: 'home-view',
+ 				currentPage: 'Home'
+ 			},
+ 			methods: {
+ 				changeTab: function(tabName, componentName){
+ 					// Change the displayed name
+ 					this.currentPage = tabName;
+ 					// change the tab
+ 					this.currentComponent = componentName;
+ 				}
+ 			}
+ 		})
+  		</script>
+  		<script src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.2.min.js" type="text/javascript"></script>
+		<script src="scripts/github-query.js" type="text/javascript"></script>
+		<script type="text/javascript">
+    		$(function() {
+        		$("#github-div").loadRepositories("pcshingles");
+    		});
+		</script>
+</body>
+</html>
